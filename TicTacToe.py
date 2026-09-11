@@ -124,3 +124,23 @@ def check_winner(board, symbol):
             return True
 
     return False
+
+
+def check_tie(board):
+    """Return True when every board position has been filled."""
+    for space in board:
+        if space == " ":
+            return False
+
+    return True
+
+
+def display_scores(players, scores):
+    """Display the current wins and tie total."""
+    print("\n==============================")
+    print("         GAME SCORES")
+    print("==============================")
+    print(f"{players['X']}: {scores['X']} win(s)")
+    print(f"{players['O']}: {scores['O']} win(s)")
+    print(f"Ties: {scores['ties']}")
+    print("==============================")
