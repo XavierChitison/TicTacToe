@@ -47,3 +47,52 @@ def display_board(board):
     print("---+---+---")
     print(f" {board[6]} | {board[7]} | {board[8]} ")
     print()
+
+
+def display_position_guide():
+    """Display the numbers players use to select board positions."""
+    print("\nChoose a position using the numbers below:")
+    print()
+    print(" 1 | 2 | 3 ")
+    print("---+---+---")
+    print(" 4 | 5 | 6 ")
+    print("---+---+---")
+    print(" 7 | 8 | 9 ")
+    print()
+
+
+def get_player_name(player_number):
+    """Ask a player for a name and make sure a name is entered."""
+    while True:
+        name = input(f"Player {player_number}, enter your name: ").strip()
+
+        if name:
+            return name
+
+        print("Please enter a name.")
+
+
+def get_player_move(board, player_name, symbol):
+    """Ask the current player for a valid board position."""
+    while True:
+        move = input(
+            f"{player_name} ({symbol}), choose a position from 1-9: "
+        ).strip()
+
+        if not move.isdigit():
+            print("Invalid input. Please enter a number from 1 to 9.")
+            continue
+
+        position = int(move)
+
+        if position < 1 or position > 9:
+            print("Please choose a position from 1 to 9.")
+            continue
+
+        board_index = position - 1
+
+        if board[board_index] != " ":
+            print("That position is already taken. Try again.")
+            continue
+
+        return board_index
