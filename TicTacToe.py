@@ -96,3 +96,31 @@ def get_player_move(board, player_name, symbol):
             continue
 
         return board_index
+
+
+def check_winner(board, symbol):
+    """Return True when the given symbol has a winning combination."""
+    winning_combinations = (
+        (0, 1, 2),
+        (3, 4, 5),
+        (6, 7, 8),
+        (0, 3, 6),
+        (1, 4, 7),
+        (2, 5, 8),
+        (0, 4, 8),
+        (2, 4, 6),
+    )
+
+    for combination in winning_combinations:
+        first = combination[0]
+        second = combination[1]
+        third = combination[2]
+
+        if (
+            board[first] == symbol
+            and board[second] == symbol
+            and board[third] == symbol
+        ):
+            return True
+
+    return False
