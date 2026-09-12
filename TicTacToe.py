@@ -144,3 +144,50 @@ def display_scores(players, scores):
     print(f"{players['O']}: {scores['O']} win(s)")
     print(f"Ties: {scores['ties']}")
     print("==============================")
+
+def play_round(players, scores):
+    """Play one complete round of Tic-Tac-Toe."""
+    board = [" "] * 9
+    current_symbol = "X"
+
+    display_position_guide()
+
+    while True:
+        display_board(board)
+
+        current_player = players[current_symbol]
+
+        move = get_player_move(
+            board,
+            current_player,
+            current_symbol
+        )
+
+        board[move] = current_symbol
+
+        if check_winner(board, current_symbol):
+            display_board(board)
+
+            print("================================")
+            print(f"Congratulations, {current_player}!")
+            print(f"{current_player} wins the game!")
+            print("================================")
+
+            scores[current_symbol] += 1
+            break
+
+        elif check_tie(board):
+            display_board(board)
+
+            print("==============================")
+            print("The game ended in a tie!")
+            print("==============================")
+
+            scores["ties"] += 1
+            break
+
+        else:
+            if current_symbol == "X":
+                current_symbol = "O"
+            else:
+                current_symbol = "X"
