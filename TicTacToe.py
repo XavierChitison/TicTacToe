@@ -191,3 +191,46 @@ def play_round(players, scores):
                 current_symbol = "O"
             else:
                 current_symbol = "X"
+
+
+def ask_to_play_again():
+    """Ask the players whether they want to play another round."""
+    while True:
+        answer = input(
+            "\nWould you like to play again? (yes/no): "
+        ).strip().lower()
+
+        if answer in ("yes", "y"):
+            return True
+
+        if answer in ("no", "n"):
+            return False
+
+        print("Please enter yes or no.")
+
+
+# Optional main routine for the game
+
+def main():
+    """Run the Tic-Tac-Toe game."""
+    print("=================================")
+    print("        TIC-TAC-TOE")
+    print("=================================")
+
+    players = {
+        "X": get_player_name(1),
+        "O": get_player_name(2),
+    }
+    scores = {"X": 0, "O": 0, "ties": 0}
+
+    while True:
+        play_round(players, scores)
+        display_scores(players, scores)
+
+        if not ask_to_play_again():
+            print("\nThanks for playing!")
+            break
+
+
+if __name__ == "__main__":
+    main()
