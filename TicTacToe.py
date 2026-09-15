@@ -209,7 +209,7 @@ def ask_to_play_again():
         print("Please enter yes or no.")
 
 
-    def main():
+def main():
     """Run the Tic-Tac-Toe program."""
     print("================================")
     print("        TIC-TAC-TOE")
