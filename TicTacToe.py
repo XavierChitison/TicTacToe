@@ -209,28 +209,58 @@ def ask_to_play_again():
         print("Please enter yes or no.")
 
 
-# Optional main routine for the game
-
-def main():
-    """Run the Tic-Tac-Toe game."""
-    print("=================================")
+    def main():
+    """Run the Tic-Tac-Toe program."""
+    print("================================")
     print("        TIC-TAC-TOE")
-    print("=================================")
+    print("================================")
+    print("Welcome to Tic-Tac-Toe!")
+    print("Get three symbols in a row to win.")
+    print()
+
+    player_one = get_player_name(1)
+    player_two = get_player_name(2)
 
     players = {
-        "X": get_player_name(1),
-        "O": get_player_name(2),
+        "X": player_one,
+        "O": player_two,
     }
-    scores = {"X": 0, "O": 0, "ties": 0}
 
-    while True:
+    scores = {
+        "X": 0,
+        "O": 0,
+        "ties": 0,
+    }
+
+    print("\nPlayers:")
+    print(f"{player_one} = X")
+    print(f"{player_two} = O")
+
+    game_running = True
+
+    while game_running:
         play_round(players, scores)
+
         display_scores(players, scores)
 
-        if not ask_to_play_again():
-            print("\nThanks for playing!")
-            break
+        game_running = ask_to_play_again()
+
+    print("\n================================")
+    print("        FINAL RESULTS")
+    print("================================")
+
+    display_scores(players, scores)
+
+    if scores["X"] > scores["O"]:
+        print(f"\nOverall winner: {players['X']}!")
+
+    elif scores["O"] > scores["X"]:
+        print(f"\nOverall winner: {players['O']}!")
+
+    else:
+        print("\nThe overall match ended in a tie!")
+
+    print("\nThanks for playing Tic-Tac-Toe!")
 
 
-if __name__ == "__main__":
-    main()
+main()
